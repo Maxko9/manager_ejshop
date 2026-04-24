@@ -16,37 +16,48 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="5">
-                        <Label Content="Dostupné produkty"/>
-                        <ListBox Name="lblProduktyNaProdej" Height="300" Margin="5"/>
-                        <Button Name="btnPridejDoKosiku" Content="Přidat do košíku" Height="40" Margin="5"/>
+                        <Label Content="Dostupné produkty" Background="LightGreen"/>
+                        <ListBox Name="lblProduktyNaProdej" DisplayMemberPath="nazev" Height="300" Margin="5" Background="LightGray"/>
+                        <Button Name="btnPridejDoKosiku" Content="Přidat do košíku" Height="40" Margin="5" Background="DarkGreen"/>
                     </StackPanel>
 
                     <Border Grid.Column="1" BorderThickness="3" BorderBrush="DarkGreen" >
-                        <StackPanel>
-                            <Label Content="Váš nákup"/>
-                            <ListBox Name="lblKosik" Height="250" DisplayMemberPath="Nazev"/>
-                            <TextBlock Text="Celkem: 0Kč" Name="txtKosikCena" Margin="5"/>
-                            <Button Content="Smazat vše" Name="btnDeleteCart" Margin="5" Background="DarkOrchid"/>
+                        <StackPanel Background="LightGray">
+                            <Label Content="Váš nákup" Background="LightGreen"/>
+                            <ListBox Name="lblKosik" Height="250" DisplayMemberPath="Nazev" Background="LightGray"/>
+                            <TextBlock Text="Celkem: 0Kč" Name="txtKosikCena" Margin="5" Background="LightGreen"/>
+                            <Button Content="Smazat vše" Name="btnDeleteCart" Margin="5" Background="DarkGreen"/>
                         </StackPanel>
                     </Border>
                 </Grid>
             </TabItem>
             <TabItem Header="Sklad📦">
-                <DockPanel>
-                    <GroupBox Header="Přidat novou položku" DockPanel.Dock="Top" Margin="5">
+                <DockPanel Background="LightSeaGreen">
+                    <GroupBox Header="Přidat novou položku" DockPanel.Dock="Top" Margin="5" Background="LightGreen">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
                                 <Label Content="Název"/>
-                                <TextBox Name="txtNovyProductName" Width="100" TextChanged="txtNovyProductName_TextChanged"/>
+                                <TextBox Name="txtNovyProduktName" Width="100"/>
                             </StackPanel>
                             <StackPanel>
                                 <Label Content="Cena (kč)"/>
-                                <TextBox Name="txtNovyProductCena" Width="80"/>
+                                <TextBox Name="txtNovyProduktCena" Width="80"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Label Content="Množství"/>
+                                <TextBox Name="txtNovyProduktMnozstvi" Width="80"/>
                             </StackPanel>
                             <Button Name="btnPridatDoSkladu" Content="Přidat" Click="btnPridatDoSkladu_Click"/>
+
                         </StackPanel>
                     </GroupBox>
-                    <DataGrid Name="dgSklad" AutoGenerateColumns="True" CanUserAddRows="False" IsReadOnly="True" Margin="5"/>
+                    <DataGrid Name="dgSklad" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="5">
+                    <DataGrid.Columns>
+                            <DataGridTextColumn Header="Název produktu" Binding="{Binding nazev}" Width="2*"/>
+                            <DataGridTextColumn Header="Cena za kus" Binding="{Binding cena}" Width="1*"/>
+                            <DataGridTextColumn Header="Množství produktu" Binding="{Binding mnozstvi}" Width="1*"/>
+                    </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Nastavení⚙️">

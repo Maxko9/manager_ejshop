@@ -17,7 +17,7 @@ namespace manžer_ejshop
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Produkt> Sklad = new ObservableCollection<Produkt> ();
+        ObservableCollection<Produkt> Sklad = new ObservableCollection<Produkt>();
 
         public MainWindow()
         {
@@ -30,21 +30,23 @@ namespace manžer_ejshop
             Sklad.Add(new Produkt(40, "Máslo", 25));
 
             dgSklad.ItemsSource = Sklad;
+            lblProduktyNaProdej.ItemsSource = Sklad;
         }
 
         //tlacitko pridat do skladu
         private void btnPridatDoSkladu_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtNovyProductName.Text) && double.TryParse(txtNovyProductCena.Text, out double cena))
+            if (!string.IsNullOrEmpty(txtNovyProduktName.Text) && double.TryParse(txtNovyProduktCena.Text, out double cena) && int.TryParse(txtNovyProduktMnozstvi.Text, out int mnozstvi))
             {
-                Sklad.Add(new Produkt(cena, txtNovyProductName.Text, 10));
-                txtNovyProductCena.Clear();
-                txtNovyProductName.Clear();
+                Sklad.Add(new Produkt(cena, txtNovyProduktName.Text, mnozstvi));
+                txtNovyProduktName.Clear();
+                txtNovyProduktCena.Clear();
+                txtNovyProduktMnozstvi.Clear();
             }
             else
             {
-                MessageBox.Show("Zadejte správné jméno a cenu!!!!!");
+                MessageBox.Show("Zadejte správné jméno, cenu a množství zboží");
             }
         }
     }
-}
+}       

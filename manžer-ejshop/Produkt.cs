@@ -8,8 +8,8 @@ namespace manžer_ejshop
 {
     internal class Produkt
     {
-        public string nazev { get; set; }
         public double cena {  get; set; }
+        public string nazev { get; set; }
         public int mnozstvi { get; set; }
 
         public Produkt(double cena, string nazev, int mnozstvi)
